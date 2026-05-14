@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F0EBE3;
+  --color-warm: #E8DFD3;
+  --color-brand-brown: #6B3A2A;
+  --color-brand-brown-light: #8B5A3A;
+  --color-brand-gold: #D4A017;
+  --color-brand-gold-light: #F0C94D;
+  --color-brand-brown-dark: #3E1F14;
+  --color-text-primary: #2D2D2D;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: #9A9A9A;
+  --color-border: #E8E4DD;
+
+  --color-danger: #9B3426;
+  --color-danger-light: #B5483A;
+  --color-danger-bg: #FAE8E5;
+  --color-danger-bg-hover: #F2D8D3;
+
+  --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", "Georgia", serif;
+
+  --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-text-primary);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
