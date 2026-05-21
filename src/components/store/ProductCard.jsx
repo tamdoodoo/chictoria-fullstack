@@ -17,11 +17,11 @@ export default function ProductCard({ product }) {
 
   const name = tProduct(product, "name");
   const color = tProduct(product, "color");
+  const desc = tProduct(product, "description");
 
   const serverWishlisted = profile?.wishlist?.includes(product.id);
   const [optimisticWishlisted, setOptimisticWishlisted] = useState(serverWishlisted);
 
-  // Sync optimistic state when server state changes
   useEffect(() => {
     setOptimisticWishlisted(serverWishlisted);
   }, [serverWishlisted]);
@@ -37,7 +37,6 @@ export default function ProductCard({ product }) {
       return;
     }
 
-    // Optimistic update — flip immediately
     setOptimisticWishlisted(!isWishlisted);
 
     const current = profile?.wishlist || [];
@@ -53,41 +52,34 @@ export default function ProductCard({ product }) {
       });
       await refreshProfile();
     } catch {
-      // Revert on failure
       setOptimisticWishlisted(isWishlisted);
     }
   };
 
+  const category = product.category === "tote" ? "Quilted Tote" : "Hobo Bag";
+
   return (
-    <div className="group">
-      <Link
-        href={`/product/${product.id}`}
-        className="block relative aspect-[4/5] rounded-2xl overflow-hidden bg-cream-dark mb-3"
-      >
+    <Link href={`/product/${product.id}`} className="group block">
+      {/* Image container */}
+      <div className="relative rounded-[32px] overflow-hidden bg-cream-dark aspect-[4/5] mb-4">
         <img
           src={product.images[0]}
           alt={name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
+
+        {/* Badge */}
         {product.badge && (
-          <span
-            className={`absolute top-3 left-3 text-[11px] font-semibold px-3 py-1 rounded-full ${
-              product.badge === "Sale"
-                ? "bg-danger text-white"
-                : product.badge === "New"
-                ? "bg-brand-brown text-white"
-                : "bg-brand-gold text-brand-brown"
-            }`}
-          >
+          <span className="absolute top-3 left-3 text-[14px] px-4 py-1 rounded-full bg-forest text-white">
             {product.badge}
           </span>
         )}
 
-        {/* Wishlist Heart */}
+        {/* Wishlist */}
         <button
           onClick={toggleWishlist}
-          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur flex items-center justify-center hover:bg-white active:scale-125 transition-all duration-200 z-10"
+          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-cream/80 backdrop-blur flex items-center justify-center hover:bg-cream active:scale-125 transition-all duration-200 z-10"
         >
           <Heart
             size={16}
@@ -96,46 +88,38 @@ export default function ProductCard({ product }) {
           />
         </button>
 
+        {/* Add to cart on hover */}
         <button
           onClick={(e) => {
             e.preventDefault();
             addItem(product);
           }}
-          className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur text-text-primary text-sm font-medium py-2.5 rounded-xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-white"
+          className="absolute bottom-3 left-3 right-3 bg-lavender text-brand-brown text-[16px] font-medium py-3 rounded-[12px] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:brightness-95"
         >
           {t("card_add_to_cart")}
         </button>
-      </Link>
+      </div>
 
-      <Link href={`/product/${product.id}`}>
-        <p className="text-[11px] uppercase tracking-widest text-text-muted mb-1">
-          {color}
-        </p>
-        <h3 className="text-sm font-medium text-text-primary leading-snug mb-1.5 group-hover:text-brand-brown transition-colors">
-          {name}
-        </h3>
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-brand-brown">
-            {formatPrice(product.price)}
-          </span>
-          {product.originalPrice && (
-            <span className="text-xs text-text-muted line-through">
-              {formatPrice(product.originalPrice)}
-            </span>
-          )}
+      {/* Text hierarchy: name+price → color → desc → rating */}
+      <div className="px-1">
+        <div className="flex items-start justify-between gap-3 mb-1">
+          <h3 className="font-display text-[18px] md:text-[20px] font-normal text-text-primary leading-[1.2] group-hover:text-text-secondary transition-colors">
+            {name}
+          </h3>
+          <span className="text-[16px] text-text-primary shrink-0 mt-0.5">{formatPrice(product.price)}</span>
         </div>
-        <div className="flex items-center gap-1 mt-1.5">
-          <div className="flex text-brand-gold text-xs">
+        <p className="text-[14px] text-text-muted leading-[1.4]">{color}</p>
+        {desc && (
+          <p className="text-[14px] text-text-secondary mt-3 leading-[1.4] line-clamp-1">{desc}</p>
+        )}
+        <div className="flex items-center gap-1.5 mt-1.5">
+          <span className="text-[14px] text-text-primary">{product.rating}</span>
+          <div className="flex text-forest text-[12px]">
             {"★".repeat(Math.floor(product.rating))}
           </div>
-          <span className="text-[11px] text-text-muted">
-            ({product.reviews})
-          </span>
-          <span className="text-[11px] text-text-muted ml-1">
-            · {t("product_sold")} {product.sold}
-          </span>
+          <span className="text-[14px] text-text-secondary underline">({product.reviews})</span>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

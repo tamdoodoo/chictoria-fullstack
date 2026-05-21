@@ -40,7 +40,7 @@ export default function CartDrawer() {
 
       {/* Drawer panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-cream z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-cream z-50 shadow-2xl flex flex-col rounded-l-[32px] transition-transform duration-300 ease-in-out ${
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -125,7 +125,7 @@ export default function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={closeDrawer}
-                className="block w-full text-center bg-brand-brown text-white py-3.5 rounded-xl text-sm font-semibold hover:bg-brand-brown-light transition-colors"
+                className="block w-full text-center bg-lavender text-brand-brown py-3.5 rounded-[12px] text-[16px] font-medium hover:brightness-95 transition-all"
               >
                 {t("cart_checkout")}
               </Link>

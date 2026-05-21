@@ -142,8 +142,8 @@ export default function AboutContent() {
             ].map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="group bg-cream rounded-3xl p-8 md:p-10 border border-border hover:border-brand-brown/20 transition-colors">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-brown/10 flex items-center justify-center text-brand-brown mb-5">
+                <div key={i} className="group bg-white rounded-[32px] p-8 md:p-10 border border-border hover:border-brand-brown/20 transition-colors">
+                  <div className="w-12 h-12 rounded-[12px] bg-lavender/30 flex items-center justify-center text-text-secondary mb-5">
                     <Icon size={24} weight="fill" />
                   </div>
                   <h3 className="text-lg font-semibold text-text-primary mb-2">{t(item.titleKey)}</h3>

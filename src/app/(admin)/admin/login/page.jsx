@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-cream px-5">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src="/images/Logo.jpeg" alt="Chictoria" className="h-16 rounded-lg mx-auto mb-4" />
+          <img src="/images/Logo.png" alt="Chictoria" className="h-16 rounded-lg mx-auto mb-4" />
           <h1 className="font-display text-2xl text-brand-brown">Admin Portal</h1>
           <p className="text-sm text-text-muted mt-1">{t("admin_login_title")}</p>
         </div>

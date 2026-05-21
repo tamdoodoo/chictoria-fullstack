@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Recoleta";
+  src: url("/fonts/Recoleta-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recoleta";
+  src: url("/fonts/Recoleta-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recoleta";
+  src: url("/fonts/Recoleta-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recoleta";
+  src: url("/fonts/Recoleta-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
-  --color-cream: #FAF7F2;
-  --color-cream-dark: #F0EBE3;
-  --color-warm: #E8DFD3;
-  --color-brand-brown: #6B3A2A;
-  --color-brand-brown-light: #8B5A3A;
-  --color-brand-gold: #D4A017;
-  --color-brand-gold-light: #F0C94D;
-  --color-brand-brown-dark: #3E1F14;
-  --color-text-primary: #2D2D2D;
-  --color-text-secondary: #6B6B6B;
-  --color-text-muted: #9A9A9A;
-  --color-border: #E8E4DD;
+  /* Colors — Wispr Flow palette */
+  --color-cream: #ffffeb;
+  --color-cream-dark: #f5f5e0;
+  --color-warm: #e4e4d0;
+  --color-brand-brown: #1a1a1a;
+  --color-brand-brown-light: #333333;
+  --color-brand-gold: #f0d7ff;
+  --color-brand-gold-light: #f5e4ff;
+  --color-brand-brown-dark: #1a1a1a;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #222222;
+  --color-text-muted: #8a8a80;
+  --color-border: #e4e4d0;
 
-  --color-danger: #9B3426;
-  --color-danger-light: #B5483A;
-  --color-danger-bg: #FAE8E5;
-  --color-danger-bg-hover: #F2D8D3;
+  --color-forest: #034f46;
+  --color-lavender: #f0d7ff;
+  --color-sunburst: #ffa946;
 
-  --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, sans-serif;
-  --font-display: "Playfair Display", "Georgia", serif;
+  --color-danger: #c44332;
+  --color-danger-light: #d4564a;
+  --color-danger-bg: #fef2f0;
+  --color-danger-bg-hover: #fde4e0;
+
+  /* Typography */
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Recoleta", "Georgia", serif;
+  --font-badge: "Figtree", ui-sans-serif, system-ui, sans-serif;
 
   --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
 }
@@ -46,4 +78,9 @@
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes product-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
 }

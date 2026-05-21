@@ -26,7 +26,7 @@ export default function AdminSidebar() {
     <aside className="w-64 bg-white border-r border-gray-200 h-screen sticky top-0 flex flex-col">
       <div className="p-5 border-b border-gray-200">
         <Link href="/admin/dashboard" className="flex items-center gap-3">
-          <img src="/images/Logo.jpeg" alt="Chictoria" className="h-10 rounded-lg" />
+          <img src="/images/Logo.png" alt="Chictoria" className="h-10 rounded-lg" />
           <div>
             <p className="text-sm font-semibold text-gray-900">Chictoria</p>
             <p className="text-xs text-gray-400">Admin Panel</p>
