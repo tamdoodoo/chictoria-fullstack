@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ChartBar, Package, ShoppingBag, Users, Storefront, SignOut } from "@phosphor-icons/react";
+import { ChartBar, Package, ShoppingBag, Users, Storefront, SignOut, Tag } from "@phosphor-icons/react";
 import { useLang } from "@/context/LanguageContext";
 
 export default function AdminSidebar() {
@@ -14,6 +14,7 @@ export default function AdminSidebar() {
     { href: "/admin/dashboard", label: "Dashboard", icon: ChartBar },
     { href: "/admin/orders", label: t("admin_orders"), icon: Package },
     { href: "/admin/products", label: t("admin_products"), icon: ShoppingBag },
+    { href: "/admin/categories", label: "Categories", icon: Tag },
     { href: "/admin/customers", label: t("admin_customers"), icon: Users },
   ];
 

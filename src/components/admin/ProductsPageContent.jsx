@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/LanguageContext";
 import { formatPrice } from "@/lib/formatPrice";
 import ProductDeleteButton from "./ProductDeleteButton";
+import ProductDetailModal from "./ProductDetailModal";
 
 export default function ProductsPageContent({ products }) {
   const { t } = useLang();
+  const [selected, setSelected] = useState(null);
 
   return (
     <>
@@ -37,13 +40,17 @@ export default function ProductsPageContent({ products }) {
           </thead>
           <tbody>
             {products.map((p) => (
-              <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50">
+              <tr
+                key={p.id}
+                className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
+                onClick={() => setSelected(p)}
+              >
                 <td className="px-5 py-3">
                   <div className="flex items-center gap-3">
                     <img src={p.images?.[0]} alt="" className="w-10 h-10 rounded-lg object-cover" />
                     <div>
                       <p className="font-medium text-gray-900">{p.name?.vi || p.name}</p>
-                      {p.badge && <span className="text-xs text-brand-gold">{p.badge}</span>}
+                      {p.badge && <span className="text-xs text-gray-500">{p.badge}</span>}
                     </div>
                   </div>
                 </td>
@@ -56,7 +63,7 @@ export default function ProductsPageContent({ products }) {
                 </td>
                 <td className="px-5 py-3 text-gray-500 capitalize">{p.category}</td>
                 <td className="px-5 py-3 text-gray-500">{p.sold || 0}</td>
-                <td className="px-5 py-3">
+                <td className="px-5 py-3" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center gap-2">
                     <Link href={`/admin/products/${p.id}`} className="text-brand-brown hover:underline text-xs">{t("admin_edit")}</Link>
                     <ProductDeleteButton productId={p.id} />
@@ -67,6 +74,10 @@ export default function ProductsPageContent({ products }) {
           </tbody>
         </table>
       </div>
+
+      {selected && (
+        <ProductDetailModal product={selected} onClose={() => setSelected(null)} />
+      )}
     </>
   );
 }
